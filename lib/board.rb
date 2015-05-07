@@ -10,7 +10,7 @@ class Board
     @grid = {}
   end
 
-  def place_ship ship, coordinate
+  def place_ship(ship, coordinate)
     fail 'Invalid coordinate' unless valid_coord? coordinate
     @grid[coordinate] = ship
   end
@@ -29,7 +29,7 @@ class Board
 
   private
 
-  def valid_coord? coord
+  def valid_coord?(coord)
     COORD_REGEX.match coord.to_s
   end
 end
