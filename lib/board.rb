@@ -2,9 +2,9 @@ require_relative 'cell'
 
 class Board
   SIZE = 10
-  HORIZONTAL_COORDS = ['A'..'Z']
+  HORIZONTAL_COORDS = ['A'..'J']
   VERTICAL_COORDS = [1..10]
-  COORD_REGEX = /^[A..Z]([1..9]|10)$/
+  COORD_REGEX = /^[A-J]([1-9]|10)$/
 
   attr_accessor :width
 
