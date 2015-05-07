@@ -1,15 +1,6 @@
 require 'board'
 
 describe Board do
-
-  describe 'place_ship' do
-    it 'adds a ship to the board' do
-      ship = double :ship
-      subject.place_ship ship, :A1
-      expect(subject.ships).to include ship
-    end
-  end
-
   it 'is 10 squares wide' do
     expect(subject.width).to be 10
   end
@@ -23,4 +14,22 @@ describe Board do
       expect(subject.ships).to be_empty
     end
   end
+
+  describe 'place_ship' do
+    it 'adds a ship to the board' do
+      ship = double :ship
+      subject.place_ship ship, :A1
+      expect(subject.ships).to include ship
+    end
+
+    it 'fails if coordinate is invalid' do
+      ship = double :ship
+
+      [:A11, :A0, :K1, :K10].each do |coord|
+        expect { subject.place_ship ship, coord }.to raise_error 'Invalid coordinate'
+      end
+    end
+  end
+
+
 end
