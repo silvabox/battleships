@@ -3,6 +3,7 @@ require 'player'
 describe Player do
   let(:board) { instance_double Board }
   let(:opponent) { instance_double Player }
+
   before(:each) do
     subject.board = board
     subject.opponent = opponent
@@ -28,6 +29,11 @@ describe Player do
   end
 
   describe 'receive_shot' do
+    it 'fails if there is no board' do
+      subject.board = nil
+      expect {subject.receive_shot :A1}.to raise_error 'Player has no board'
+    end
+    
     it 'sends the shot to the board' do
       expect(board).to receive(:receive_shot).with :A1
       subject.receive_shot :A1

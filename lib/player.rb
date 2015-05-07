@@ -6,6 +6,7 @@ class Player
   end
 
   def receive_shot coordinate
+    fail 'Player has no board' unless board
     board.receive_shot coordinate
   end
 

@@ -39,9 +39,11 @@ describe Board do
         expect { subject.receive_shot coord }.to raise_error 'Invalid coordinate'
       end
     end
+
     it 'returns :miss for a miss' do
       expect(subject.receive_shot :A1).to be :miss
     end
+
     it 'returns :hit for a ship' do
       ship = double :ship
       subject.place_ship ship, :A1

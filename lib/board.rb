@@ -1,3 +1,5 @@
+require_relative 'cell'
+
 class Board
   SIZE = 10
   HORIZONTAL_COORDS = ['A'..'Z']
