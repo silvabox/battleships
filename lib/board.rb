@@ -13,7 +13,7 @@ class Board
   end
 
   def place_ship ship, coordinate
-    fail 'Invalid coordinate' unless valid_coord? coordinate
+    validate_coord coordinate
     @grid[coordinate] = ship
   end
 
@@ -30,12 +30,20 @@ class Board
   end
 
   def receive_shot coordinate
-    fail 'Invalid coordinate' unless valid_coord? coordinate
+    validate_coord coordinate
     @grid[coordinate] ? :hit : :miss
+  end
 
+  def [] coordinate
+    validate_coord coordinate
+    @grid[coordinate]
   end
 
   private
+
+  def validate_coord coord
+    fail 'Invalid coordinate' unless valid_coord? coord
+  end
 
   def valid_coord? coord
     COORD_REGEX.match coord.to_s

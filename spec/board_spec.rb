@@ -1,6 +1,8 @@
 require 'board'
 
 describe Board do
+  let(:invalid_coords) {   [:A11, :A0, :K1, :K10] }
+
   it 'is 10 squares wide' do
     expect(subject.width).to be 10
   end
@@ -19,24 +21,33 @@ describe Board do
     let(:ship) { double :ship }
 
     it 'adds a ship to the board' do
-      ship = double :ship
       subject.place_ship ship, :A1
       expect(subject.ships).to include ship
     end
 
     it 'fails if coordinate is invalid' do
-      ship = double :ship
-
-      [:A11, :A0, :K1, :K10].each do |coord|
+      invalid_coords.each do |coord|
         expect { subject.place_ship ship, coord }.to raise_error 'Invalid coordinate'
       end
     end
   end
 
+  describe '[]' do
+    it 'fails if coordinate is invalid' do
+      invalid_coords.each do |coord|
+        expect { subject.receive_shot coord }.to raise_error 'Invalid coordinate'
+      end
+    end
+    it 'returns the entry in the grid' do
+      subject.place_ship :ship, :C9
+      expect(subject[:C9]).to be :ship
+    end
+  end
+
   describe 'receive_shot' do
     it 'fails if coordinate is invalid' do
-      [:A11, :A0, :K1, :K10].each do |coord|
-        expect { subject.receive_shot coord }.to raise_error 'Invalid coordinate'
+    invalid_coords.each do |coord|
+        expect { subject[coord] }.to raise_error 'Invalid coordinate'
       end
     end
 

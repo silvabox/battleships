@@ -1,5 +1,6 @@
 require 'player'
 require 'board'
+require 'ship'
 
 feature 'player adds ships' do
   let(:player) { Player.new }
@@ -21,7 +22,7 @@ feature 'player adds ships' do
     player.place_ship carrier, :D8
 
 
-    [:A1, :A2].each { |coord| expect(board[coord]).to be destroyer }
-    [:D8, :E8, :F8, :G8, :H8].each { |coord| expect(board[coord]).to be carrier }
+    [:A1, :A2].each { |coord| expect(player.board[coord]).to be destroyer }
+    [:D8, :E8, :F8, :G8, :H8].each { |coord| expect(player.board[coord]).to be carrier }
   end
 end
