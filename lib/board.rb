@@ -2,9 +2,6 @@ require_relative 'cell'
 
 class Board
   SIZE = 10
-  HORIZONTAL_COORDS = ['A'..'J']
-  VERTICAL_COORDS = [1..10]
-  COORD_REGEX = /^[A-J]([1-9]|10)$/
 
   attr_accessor :width
 
@@ -12,9 +9,14 @@ class Board
     @grid = {}
   end
 
-  def place_ship ship, coordinate
-    validate_coord coordinate
-    @grid[coordinate] = ship
+  def place_ship ship, coordinates
+    CoordinateHandler.validate_coords coordinates
+    
+    ship_coords = CoordinateHandler.all_coords_for coordinates, ship.size
+
+    ship_coords.each { |coords| CoordinateHandler.validate_coords coords }
+
+    ship_coords.each { |coords| @grid[coords] = ship }
   end
 
   def width
@@ -29,23 +31,13 @@ class Board
     @grid.values
   end
 
-  def receive_shot coordinate
-    validate_coord coordinate
-    @grid[coordinate] ? :hit : :miss
+  def receive_shot coordinates
+    CoordinateHandler.validate_coords coordinates
+    @grid[coordinates] ? :hit : :miss
   end
 
-  def [] coordinate
-    validate_coord coordinate
-    @grid[coordinate]
-  end
-
-  private
-
-  def validate_coord coord
-    fail 'Invalid coordinate' unless valid_coord? coord
-  end
-
-  def valid_coord? coord
-    COORD_REGEX.match coord.to_s
+  def [] coordinates
+    CoordinateHandler.validate_coords coordinates
+    @grid[coordinates]
   end
 end

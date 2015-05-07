@@ -21,7 +21,6 @@ feature 'player adds ships' do
     player.place_ship destroyer, :A1
     player.place_ship carrier, :D8
 
-
     [:A1, :A2].each { |coord| expect(player.board[coord]).to be destroyer }
     [:D8, :E8, :F8, :G8, :H8].each { |coord| expect(player.board[coord]).to be carrier }
   end
