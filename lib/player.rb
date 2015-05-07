@@ -6,7 +6,7 @@ class Player
   end
 
   def receive_shot coordinate
-
+    board.receive_shot coordinate
   end
 
   def shoot coordinate

@@ -22,8 +22,15 @@ describe Player do
     expect(subject.opponent).to be opponent
   end
 
-  it 'can take a shot' do
+  it 'can take a shot at the opponent' do
     expect(opponent).to receive(:receive_shot).with :A1
     subject.shoot :A1
+  end
+
+  describe 'receive_shot' do
+    it 'sends the shot to the board' do
+      expect(board).to receive(:receive_shot).with :A1
+      subject.receive_shot :A1
+    end
   end
 end

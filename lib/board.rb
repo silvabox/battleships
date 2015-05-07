@@ -27,6 +27,12 @@ class Board
     @grid.values
   end
 
+  def receive_shot coordinate
+    fail 'Invalid coordinate' unless valid_coord? coordinate
+    @grid[coordinate] ? :hit : :miss
+
+  end
+
   private
 
   def valid_coord? coord
