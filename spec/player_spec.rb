@@ -18,7 +18,12 @@ describe Player do
     subject.place_ship ship, :A1
   end
 
-  it "knows about the opponent" do
+  it 'knows about the opponent' do
     expect(subject.opponent).to be opponent
+  end
+
+  it 'can take a shot' do
+    expect(opponent).to receive(:receive_shot).with :A1
+    subject.shoot :A1
   end
 end
