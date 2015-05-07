@@ -16,6 +16,8 @@ describe Board do
   end
 
   describe 'place_ship' do
+    let(:ship) { double :ship }
+
     it 'adds a ship to the board' do
       ship = double :ship
       subject.place_ship ship, :A1
@@ -30,6 +32,4 @@ describe Board do
       end
     end
   end
-
-
 end
