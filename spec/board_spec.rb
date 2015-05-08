@@ -38,6 +38,11 @@ describe Board do
         expect(subject[coord]).to be ship
       end
     end
+
+    it 'fails if ship is out of bounds' do
+        ship = double :ship, size: 2
+        expect{subject.place_ship ship, :J2}.to raise_error 'Out of bounds'
+    end
   end
 
   describe '[]' do

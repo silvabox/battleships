@@ -15,7 +15,8 @@ class Board
 
     ship_coords = CoordinateHandler.all_coords_for coordinates, ship.size
 
-    ship_coords.each { |coords| CoordinateHandler.validate_coords coords }
+    #ship is out of bounds if the ship is larger than the available coords
+    fail 'Out of bounds' if ship.size > ship_coords.length
 
     ship_coords.each { |coords| @grid[coords] = ship }
   end
