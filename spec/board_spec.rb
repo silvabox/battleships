@@ -4,11 +4,11 @@ describe Board do
   let(:invalid_coords) {   [:A11, :A0, :K1, :K10] }
 
   it 'is 10 squares wide' do
-    expect(subject.width).to be 10
+    expect(subject.width).to eq 10
   end
 
   it 'is 10 squares high' do
-    expect(subject.height).to be 10
+    expect(subject.height).to eq 10
   end
 
   context 'when initialized' do
@@ -60,13 +60,13 @@ describe Board do
     end
 
     it 'returns :miss for a miss' do
-      expect(subject.receive_shot :A1).to be :miss
+      expect(subject.receive_shot :A1).to eq :miss
     end
 
     it 'returns :hit for a ship' do
       ship = double :ship, size: 1
       subject.place_ship ship, :A1
-      expect(subject.receive_shot :A1).to be :hit
+      expect(subject.receive_shot :A1).to eq :hit
     end
   end
 end

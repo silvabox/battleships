@@ -1,4 +1,5 @@
 require_relative 'cell'
+require_relative 'coordinate_handler'
 
 class Board
   SIZE = 10
@@ -11,7 +12,7 @@ class Board
 
   def place_ship ship, coordinates
     CoordinateHandler.validate_coords coordinates
-    
+
     ship_coords = CoordinateHandler.all_coords_for coordinates, ship.size
 
     ship_coords.each { |coords| CoordinateHandler.validate_coords coords }
