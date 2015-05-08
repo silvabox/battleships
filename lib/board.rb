@@ -36,9 +36,11 @@ class Board
   end
 
   def receive_shot coordinates
-    coord_handler.validate_coords coordinates
+    coord_handler.validate coordinates
+
     cell = grid[coordinates]
     cell.receive_shot
+
     if cell.content
       cell.content.sunk? ? :sunk : :hit
     else
@@ -47,7 +49,7 @@ class Board
   end
 
   def [] coordinates
-    coord_handler.validate_coords coordinates
+    coord_handler.validate coordinates
     grid[coordinates].content
   end
 
@@ -62,9 +64,9 @@ class Board
   end
 
   def all_ship_coords ship, coords, orientation
-    coord_handler.validate_coords coords
+    coord_handler.validate coords
 
-    all_coords = coord_handler.all_coords_for coords, ship.size, orientation
+    all_coords = coord_handler.from coords, ship.size, orientation
 
     validate_all_ship_coords all_coords, ship.size
   end

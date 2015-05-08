@@ -8,20 +8,20 @@ class CoordinateHandler
   def each
     VERTICAL_COORDS.each do |y|
       HORIZONTAL_COORDS.each do |x|
-        yield coordinate x, y
+        yield coordinates x, y
       end
     end
   end
 
-  def validate_coords coords
-    fail 'Invalid coordinates' unless valid_coords? coords
+  def validate coords
+    fail 'Invalid coordinates' unless valid? coords
   end
 
-  def valid_coords? coords
+  def valid? coords
     COORD_REGEX.match coords.to_s
   end
 
-  def all_coords_for start, size, orientation = :horizontally
+  def from start, size, orientation = :horizontally
     match = COORD_REGEX.match start
 
     x = match.captures.first
@@ -34,8 +34,10 @@ class CoordinateHandler
     end
   end
 
+  private
+
   def horizontal_coords_for x, y, size
-    x_coords(x, size).map { |x| coordinate x, y }
+    x_coords(x, size).map { |x| coordinates x, y }
   end
 
   def x_coords x, size
@@ -44,7 +46,7 @@ class CoordinateHandler
   end
 
   def vertical_coords_for x, y, size
-    y_coords(y, size).map { |y| coordinate x, y }
+    y_coords(y, size).map { |y| coordinates x, y }
   end
 
   def y_coords y, size
@@ -52,7 +54,7 @@ class CoordinateHandler
     VERTICAL_COORDS.slice start, size
   end
 
-  def coordinate x, y
+  def coordinates x, y
     "#{x}#{y}".to_sym
   end
 end
