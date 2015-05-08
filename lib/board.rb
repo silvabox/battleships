@@ -38,6 +38,8 @@ class Board
   def receive_shot coordinate
     coord_handler.validate coordinate
 
+    validate_coord_not_shot coordinate
+
     cell = grid[coordinate]
     cell.receive_shot
 
@@ -76,7 +78,6 @@ class Board
     fail 'Out of bounds' if size > coords.length
 
     validate_all_coords_available coords
-    validate_all_coords_not_shot coords
   end
 
   def validate_all_coords_available coords
@@ -85,9 +86,7 @@ class Board
     end
   end
 
-  def validate_all_coords_not_shot coords
-    coords.each do |coord|
-      fail 'Coordinate have been shot already' if grid[coord].shot?
-    end
+  def validate_coord_not_shot coord
+    fail 'Coordinate has been shot already' if grid[coord].shot?
   end
 end

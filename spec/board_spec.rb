@@ -89,7 +89,7 @@ describe Board do
       expect(subject.receive_shot :A1).to eq :miss
     end
 
-    it 'fails if the coordinate has been shot before' do
+    it 'fails if the coordinate has been shot already' do
       subject.receive_shot :B2
       expect{subject.receive_shot :B2}.to raise_error 'Coordinate has been shot already'
     end
