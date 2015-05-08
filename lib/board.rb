@@ -13,10 +13,10 @@ class Board
     initialize_grid
   end
 
-  def place_ship ship, coordinates, orientation = :horizontally
-    coords = all_ship_coords ship, coordinates, orientation
+  def place_ship ship, coordinate, orientation = :horizontally
+    coords = all_ship_coords ship, coordinate, orientation
 
-    coords.each { |coords| grid[coords].content = ship }
+    coords.each { |coord| grid[coord].content = ship }
     @ships << ship
   end
 
@@ -35,10 +35,10 @@ class Board
     @ships.dup
   end
 
-  def receive_shot coordinates
-    coord_handler.validate coordinates
+  def receive_shot coordinate
+    coord_handler.validate coordinate
 
-    cell = grid[coordinates]
+    cell = grid[coordinate]
     cell.receive_shot
 
     if cell.content
@@ -48,9 +48,9 @@ class Board
     end
   end
 
-  def [] coordinates
-    coord_handler.validate coordinates
-    grid[coordinates].content
+  def [] coordinate
+    coord_handler.validate coordinate
+    grid[coordinate].content
   end
 
   private
@@ -58,15 +58,15 @@ class Board
   attr_reader :grid, :coord_handler
 
   def initialize_grid
-    coord_handler.each do |coords|
-      grid[coords] = Cell.new
+    coord_handler.each do |coord|
+      grid[coord] = Cell.new
     end
   end
 
-  def all_ship_coords ship, coords, orientation
-    coord_handler.validate coords
+  def all_ship_coords ship, coord, orientation
+    coord_handler.validate coord
 
-    all_coords = coord_handler.from coords, ship.size, orientation
+    all_coords = coord_handler.from coord, ship.size, orientation
 
     validate_all_ship_coords all_coords, ship.size
   end
@@ -80,12 +80,14 @@ class Board
   end
 
   def validate_all_coords_available coords
-    coords.each do |coords|
-      fail 'Coordinates already occupied' unless grid[coords].empty?
+    coords.each do |coord|
+      fail 'Coordinate already occupied' unless grid[coord].empty?
     end
   end
 
   def validate_all_coords_not_shot coords
-    fail 'Coordinates have been shot already' if grid[coords].shot?
+    coords.each do |coord|
+      fail 'Coordinate have been shot already' if grid[coord].shot?
+    end
   end
 end

@@ -27,7 +27,7 @@ describe Board do
 
     it 'fails if coordinates are invalid' do
       invalid_coords.each do |coord|
-        expect { subject.place_ship ship, coord }.to raise_error 'Invalid coordinates'
+        expect { subject.place_ship ship, coord }.to raise_error 'Invalid coordinate'
       end
     end
 
@@ -62,14 +62,14 @@ describe Board do
       ship2 = double :ship, size: 3
 
       subject.place_ship ship1, :B2
-      expect{subject.place_ship ship2, :C1, :vertically}.to raise_error 'Coordinates already occupied'
+      expect{subject.place_ship ship2, :C1, :vertically}.to raise_error 'Coordinate already occupied'
     end
   end
 
   describe '[]' do
-    it 'fails if coordinates are invalid' do
+    it 'fails if coordinate is invalid' do
       invalid_coords.each do |coord|
-        expect { subject[coord] }.to raise_error 'Invalid coordinates'
+        expect { subject[coord] }.to raise_error 'Invalid coordinate'
       end
     end
     it 'returns the entry in the grid' do
@@ -79,9 +79,9 @@ describe Board do
   end
 
   describe 'receive_shot' do
-    it 'fails if coordinates are invalid' do
+    it 'fails if coordinate is invalid' do
       invalid_coords.each do |coord|
-        expect { subject.receive_shot coord }.to raise_error 'Invalid coordinates'
+        expect { subject.receive_shot coord }.to raise_error 'Invalid coordinate'
       end
     end
 
@@ -89,9 +89,9 @@ describe Board do
       expect(subject.receive_shot :A1).to eq :miss
     end
 
-    it 'fails if the coordinates has been shot before' do
+    it 'fails if the coordinate has been shot before' do
       subject.receive_shot :B2
-      expect{subject.receive_shot :B2}.to raise_error 'Coordinates have been shot already'
+      expect{subject.receive_shot :B2}.to raise_error 'Coordinate has been shot already'
     end
 
     context 'when there is a ship' do
