@@ -81,11 +81,11 @@ class Board
 
   def validate_all_coords_available coords
     coords.each do |coords|
-      fail 'Coordinates already occupied' if grid[coords].empty?
+      fail 'Coordinates already occupied' unless grid[coords].empty?
     end
   end
 
   def validate_all_coords_not_shot coords
-    fail 'Coordinates have been hot already' if grid[coords].shot?
+    fail 'Coordinates have been shot already' if grid[coords].shot?
   end
 end

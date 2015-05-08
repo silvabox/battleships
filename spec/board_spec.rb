@@ -89,9 +89,9 @@ describe Board do
       expect(subject.receive_shot :A1).to eq :miss
     end
 
-    it 'fails if the coordinate has been shot before' do
+    it 'fails if the coordinates has been shot before' do
       subject.receive_shot :B2
-      expect{subject.receive_shot :B2}.to raise_error 'Coordinate has been shot already'
+      expect{subject.receive_shot :B2}.to raise_error 'Coordinates have been shot already'
     end
 
     context 'when there is a ship' do

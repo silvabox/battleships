@@ -9,36 +9,36 @@ describe CoordinateHandler do
     it 'enumerates all coordinates' do
       all_coords = subject.to_a
 
-      valid_coords.each do |coords|
-        expect(all_coords).to include coords
+      valid_coords.each do |coord|
+        expect(all_coords).to include coord
       end
     end
   end
 
   describe 'validate' do
     it 'raises error for invalid coords' do
-      invalid_coords.each do |coords|
-        expect{ subject.validate coords }.to raise_error 'Invalid coordinates'
+      invalid_coords.each do |coord|
+        expect{ subject.validate coord }.to raise_error 'Invalid coordinate'
       end
     end
 
-    it 'does nothing of valid coords' do
-      valid_coords.each do |coords|
-        expect{ subject.validate coords }.not_to raise_error
+    it 'does nothing for valid coords' do
+      valid_coords.each do |coord|
+        expect{ subject.validate coord }.not_to raise_error
       end
     end
   end
 
   describe 'valid?' do
     it 'returns false for invalid coords' do
-      invalid_coords.each do |coords|
-        expect(subject.valid? coords).to be_falsy
+      invalid_coords.each do |coord|
+        expect(subject.valid? coord).to be_falsy
       end
     end
 
     it 'returns true for valid coords' do
-      valid_coords.each do |coords|
-        expect(subject.valid? coords).to be_truthy
+      valid_coords.each do |coord|
+        expect(subject.valid? coord).to be_truthy
       end
     end
   end
