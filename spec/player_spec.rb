@@ -13,10 +13,16 @@ describe Player do
     expect(subject.board).to be board
   end
 
-  it 'can place a ship on the board' do
+  it 'can place a ship horizontally on the board' do
     ship = double :ship
-    expect(board).to receive(:place_ship).with ship, :A1
+    expect(board).to receive(:place_ship).with ship, :A1, :horizontally
     subject.place_ship ship, :A1
+  end
+
+  it 'can place a ship vertically on the board' do
+    ship = double :ship
+    expect(board).to receive(:place_ship).with ship, :A1, :vertically
+    subject.place_ship ship, :A1, :vertically
   end
 
   it 'knows about the opponent' do
@@ -33,7 +39,7 @@ describe Player do
       subject.board = nil
       expect {subject.receive_shot :A1}.to raise_error 'Player has no board'
     end
-    
+
     it 'sends the shot to the board' do
       expect(board).to receive(:receive_shot).with :A1
       subject.receive_shot :A1

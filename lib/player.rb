@@ -1,8 +1,8 @@
 class Player
   attr_accessor :board, :opponent
 
-  def place_ship ship, coordinates
-    board.place_ship ship, coordinates
+  def place_ship ship, coordinates, orientation = :horizontally
+    board.place_ship ship, coordinates, orientation
   end
 
   def receive_shot coordinates

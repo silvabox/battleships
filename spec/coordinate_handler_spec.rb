@@ -32,21 +32,43 @@ describe CoordinateHandler do
     end
   end
 
-  describe 'all_coords_for' do
-    it 'returns all coords from the given start' do
-      expect(subject.all_coords_for :B4, 4).to eq [:B4, :C4, :D4, :E4]
+  context 'horizontal orientation' do
+    describe 'all_coords_for' do
+      it 'returns all coords from the given start' do
+        expect(subject.all_coords_for :B4, 4).to eq [:B4, :C4, :D4, :E4]
+      end
+    end
+
+    describe 'horizontal_coords_for' do
+      it 'returns an array of coordinates' do
+        expect(subject.horizontal_coords_for 'C', 1, 3).to eq [:C1, :D1, :E1]
+      end
+    end
+
+    describe 'x_coords' do
+      it 'returns the relevant slice of the horizontal coords' do
+        expect(subject.x_coords 'E', 3).to eq ['E', 'F', 'G']
+      end
     end
   end
 
-  describe 'horizontal_coords_for' do
-    it 'returns an array of coordinates' do
-      expect(subject.horizontal_coords_for 'C', 1, 3).to eq [:C1, :D1, :E1]
+  context 'vertical orientation' do
+    describe 'all_coords_for' do
+      it 'returns all coords from the given start' do
+        expect(subject.all_coords_for :B4, 4, :vertically).to eq [:B4, :B5, :B6, :B7]
+      end
     end
-  end
 
-  describe 'x_coords' do
-    it 'returns the relevant slice of the horizontal coords' do
-      expect(subject.x_coords 'E', 3).to eq ['E', 'F', 'G']
+    describe 'vertical_coords_for' do
+      it 'returns an array of coordinates' do
+        expect(subject.vertical_coords_for 'C', 1, 3).to eq [:C1, :C2, :C3]
+      end
+    end
+
+    describe 'y_coords' do
+      it 'returns the relevant slice of the vertical coords' do
+        expect(subject.y_coords '5', 3).to eq [5, 6, 7]
+      end
     end
   end
 end

@@ -39,9 +39,22 @@ describe Board do
       end
     end
 
-    it 'fails if ship is out of bounds' do
-        ship = double :ship, size: 2
-        expect{subject.place_ship ship, :J2}.to raise_error 'Out of bounds'
+    it 'fails if ship is out of bounds horizontally' do
+      ship = double :ship, size: 2
+      expect{subject.place_ship ship, :J2}.to raise_error 'Out of bounds'
+    end
+
+    it 'allows ships to be placed vertically' do
+      ship = double :ship, size: 3
+      subject.place_ship ship, :J2, :vertically
+      [:J2, :J3, :J4].each do |coords|
+        expect(subject[coords]).to be ship
+      end
+    end
+
+    it 'fails if ship is out of bounds vertically' do
+      ship = double :ship, size: 2
+      expect{subject.place_ship ship, :E10, :vertically}.to raise_error 'Out of bounds'
     end
   end
 

@@ -10,10 +10,10 @@ class Board
     @grid = {}
   end
 
-  def place_ship ship, coordinates
+  def place_ship ship, coordinates, orientation = :horizontally
     CoordinateHandler.validate_coords coordinates
 
-    ship_coords = CoordinateHandler.all_coords_for coordinates, ship.size
+    ship_coords = CoordinateHandler.all_coords_for coordinates, ship.size, orientation
 
     #ship is out of bounds if the ship is larger than the available coords
     fail 'Out of bounds' if ship.size > ship_coords.length
