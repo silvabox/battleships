@@ -56,6 +56,14 @@ describe Board do
       ship = double :ship, size: 2
       expect{subject.place_ship ship, :E10, :vertically}.to raise_error 'Out of bounds'
     end
+
+    it 'fails if ships overlap' do
+      ship1 = double :ship, size: 4
+      ship2 = double :ship, size: 3
+
+      subject.place_ship ship1, :B2
+      expect{subject.place_ship ship2, :C1, :vertically}.to raise_error 'Coordinates already occupied'
+    end
   end
 
   describe '[]' do

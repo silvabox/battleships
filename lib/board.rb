@@ -18,6 +18,8 @@ class Board
     #ship is out of bounds if the ship is larger than the available coords
     fail 'Out of bounds' if ship.size > ship_coords.length
 
+    validate_coords_available ship_coords
+
     ship_coords.each { |coords| @grid[coords] = ship }
   end
 
@@ -41,5 +43,13 @@ class Board
   def [] coordinates
     CoordinateHandler.validate_coords coordinates
     @grid[coordinates]
+  end
+
+  private
+
+  def validate_coords_available ship_coords
+    ship_coords.each do |coords|
+      fail 'Coordinates already occupied' if @grid[coords]
+    end
   end
 end
