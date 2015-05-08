@@ -69,7 +69,7 @@ describe Board do
   describe '[]' do
     it 'fails if coordinates are invalid' do
       invalid_coords.each do |coord|
-        expect { subject.receive_shot coord }.to raise_error 'Invalid coordinates'
+        expect { subject[coord] }.to raise_error 'Invalid coordinates'
       end
     end
     it 'returns the entry in the grid' do
@@ -81,7 +81,7 @@ describe Board do
   describe 'receive_shot' do
     it 'fails if coordinates are invalid' do
       invalid_coords.each do |coord|
-        expect { subject[coord] }.to raise_error 'Invalid coordinates'
+        expect { subject.receive_shot coord }.to raise_error 'Invalid coordinates'
       end
     end
 

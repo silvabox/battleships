@@ -3,8 +3,16 @@ class Ship
 
   def initialize size
     @size = size
+    @hits = 0
   end
 
+  def hit
+    @hits += 1
+  end
+
+  def sunk?
+    @hits >= size
+  end
 
   def self.destroyer
     Ship.new(2)

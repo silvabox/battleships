@@ -1,6 +1,18 @@
 require 'ship'
 
 describe Ship do
+
+  subject { Ship.new 2 }
+
+  it 'can be hit' do
+    expect(subject).to respond_to :hit
+  end
+
+  it 'can be sunk' do
+    subject.size.times { subject.hit }
+    expect(subject).to be_sunk
+  end
+
   it 'creates destroyers' do
     ship = Ship.destroyer
 
