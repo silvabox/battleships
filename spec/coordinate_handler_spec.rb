@@ -1,8 +1,19 @@
 require 'coordinate_handler'
 
 describe CoordinateHandler do
+
   let(:invalid_coords) {   [:A11, :A0, :K1, :K10] }
   let(:valid_coords) {   [:A1, :B9, :I8, :J10] }
+
+  describe 'each' do
+    it 'enumerates all coordinates' do
+      all_coords = subject.to_a
+
+      valid_coords.each do |coords|
+        expect(all_coords).to include coords
+      end
+    end
+  end
 
   describe 'validate_coords' do
     it 'raises error for invalid coords' do

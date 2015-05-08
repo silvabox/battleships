@@ -89,26 +89,30 @@ describe Board do
       expect(subject.receive_shot :A1).to eq :miss
     end
 
+    it 'fails if the coordinate has been shot before' do
+      subject.receive_shot :B2
+      expect{subject.receive_shot :B2}.to raise_error 'Coordinate has been shot already'
+    end
+
     context 'when there is a ship' do
       let(:ship) { double :ship, size: 1, hit: nil, sunk?: false }
 
-        it 'hits the ship' do
-          subject.place_ship ship, :A1
-          expect(ship).to receive :hit
-          subject.receive_shot :A1
-        end
+      it 'hits the ship' do
+        subject.place_ship ship, :A1
+        expect(ship).to receive :hit
+        subject.receive_shot :A1
+      end
 
-        it 'returns :hit' do
-          subject.place_ship ship, :A1
-          expect(subject.receive_shot :A1).to eq :hit
-        end
+      it 'returns :hit' do
+        subject.place_ship ship, :A1
+        expect(subject.receive_shot :A1).to eq :hit
+      end
 
-        it 'returns :sunk when the ship is sunk' do
-          allow(ship).to receive(:sunk?).and_return true
-          subject.place_ship ship, :A1
-          expect(subject.receive_shot :A1).to eq :sunk
-        end
+      it 'returns :sunk when the ship is sunk' do
+        allow(ship).to receive(:sunk?).and_return true
+        subject.place_ship ship, :A1
+        expect(subject.receive_shot :A1).to eq :sunk
+      end
     end
-
   end
 end
