@@ -115,4 +115,17 @@ describe Board do
       end
     end
   end
+
+  it 'knows when all ships are sunk' do
+    subject.place_ship double(:ship, size: 3, sunk?: true), :A1
+    subject.place_ship double(:ship, size: 3, sunk?: true), :C3, :vertically
+
+    expect(subject.all_ships_sunk?).to be_truthy
+  end
+
+  describe 'all_ships_sunk?' do
+    it 'returns false when there are no ships' do
+      expect(subject.all_ships_sunk?).to be_falsy
+    end
+  end
 end

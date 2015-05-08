@@ -55,6 +55,11 @@ class Board
     grid[coordinate].content
   end
 
+  def all_ships_sunk?
+    return false if ships.empty?
+    ships.all?(&:sunk?)
+  end
+
   private
 
   attr_reader :grid, :coord_handler

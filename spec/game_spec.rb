@@ -26,4 +26,14 @@ describe Game do
     Game.new playerClass, boardClass
   end
 
+  it 'knows when there is a winner' do
+    allow(player).to receive(:winner?).and_return true
+    expect(subject).to have_winner
+  end
+
+  it 'knows who the winner is' do
+    allow(player).to receive(:winner?).and_return true
+    expect(subject.winner).to be player
+  end
+
 end

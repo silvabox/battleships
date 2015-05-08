@@ -11,6 +11,17 @@ class Player
   end
 
   def shoot coordinates
+    fail 'Player has no opponent' unless opponent
     opponent.receive_shot coordinates
+  end
+
+  def winner?
+    fail 'Player has no opponent' unless opponent
+    opponent.all_ships_sunk?
+  end
+
+  def all_ships_sunk?
+    fail 'Player has no board' unless board
+    board.all_ships_sunk?
   end
 end
