@@ -37,7 +37,13 @@ class Board
 
   def receive_shot coordinates
     CoordinateHandler.validate_coords coordinates
-    @grid[coordinates] ? :hit : :miss
+    content = @grid[coordinates]
+    if content
+      content.hit
+      content.sunk? ? :sunk : :hit
+    else
+      :miss
+    end
   end
 
   def [] coordinates
