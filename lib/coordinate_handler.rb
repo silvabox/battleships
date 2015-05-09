@@ -18,7 +18,7 @@ class CoordinateHandler
       row = HORIZONTAL_COORDS.map do |x|
         coordinate x, y
       end
-      yield row
+      yield row, y
     end
   end
 

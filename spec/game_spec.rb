@@ -36,4 +36,8 @@ describe Game do
     expect(subject.winner).to be player
   end
 
+  describe 'print_board' do
+    
+  end
+
 end

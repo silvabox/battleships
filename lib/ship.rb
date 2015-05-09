@@ -1,16 +1,17 @@
 class Ship
   SIZES = {
+    submarine: 1,
     destroyer: 2,
     cruiser: 3,
-    submarine: 3,
     battleship: 4,
     aircraft_carrier: 5
   }
 
-  attr_reader :size
+  attr_reader :type, :size
 
-  def initialize size
-    @size = size
+  def initialize type
+    @type = type
+    @size = SIZES[type]
     @hits = 0
   end
 
@@ -22,23 +23,23 @@ class Ship
     @hits >= size
   end
 
+  def self.submarine
+    Ship.new(:submarine)
+  end
+
   def self.destroyer
-    Ship.new(SIZES[:destroyer])
+    Ship.new(:destroyer)
   end
 
   def self.cruiser
-    Ship.new(SIZES[:cruiser])
-  end
-
-  def self.submarine
-    Ship.new(SIZES[:submarine])
+    Ship.new(:cruiser)
   end
 
   def self.battleship
-    Ship.new(SIZES[:battleship])
+    Ship.new(:battleship)
   end
 
   def self.aircraft_carrier
-    Ship.new(SIZES[:aircraft_carrier])
+    Ship.new(:aircraft_carrier)
   end
 end

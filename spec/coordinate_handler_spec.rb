@@ -19,10 +19,18 @@ describe CoordinateHandler do
   describe 'each_row' do
     it 'enumerates rows' do
       rows = []
-      subject.each_row { |row| rows << row }
+      subject.each_row { |row, number| rows << row }
 
       [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10].each do |start|
         expect(rows).to include subject.from start, 10
+      end
+    end
+    it 'enumerates includes row numbers' do
+      numbers = []
+      subject.each_row { |row, number| numbers << number }
+
+      (1..10).each do |number|
+        expect(numbers).to include number
       end
     end
   end
