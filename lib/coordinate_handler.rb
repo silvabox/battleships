@@ -13,6 +13,15 @@ class CoordinateHandler
     end
   end
 
+  def each_row
+    VERTICAL_COORDS.each do |y|
+      row = HORIZONTAL_COORDS.map do |x|
+        coordinate x, y
+      end
+      yield row
+    end
+  end
+
   def validate coord
     fail 'Invalid coordinate' unless valid? coord
   end

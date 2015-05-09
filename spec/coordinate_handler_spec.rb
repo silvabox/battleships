@@ -7,10 +7,22 @@ describe CoordinateHandler do
 
   describe 'each' do
     it 'enumerates all coordinates' do
-      all_coords = subject.to_a
+      coords = []
+      subject.each { |coord| coords << coord }
 
       valid_coords.each do |coord|
-        expect(all_coords).to include coord
+        expect(coords).to include coord
+      end
+    end
+  end
+
+  describe 'each_row' do
+    it 'enumerates rows' do
+      rows = []
+      subject.each_row { |row| rows << row }
+
+      [:A1, :A2, :A3, :A4, :A5, :A6, :A7, :A8, :A9, :A10].each do |start|
+        expect(rows).to include subject.from start, 10
       end
     end
   end

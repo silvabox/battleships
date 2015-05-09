@@ -35,7 +35,7 @@ describe Board do
       ship = double :ship, size: 4
       subject.place_ship ship, :A1
       [:A1, :B1, :C1, :D1].each do |coord|
-        expect(subject[coord]).to be ship
+        expect(subject[coord].content).to be ship
       end
     end
 
@@ -48,7 +48,7 @@ describe Board do
       ship = double :ship, size: 3
       subject.place_ship ship, :J2, :vertically
       [:J2, :J3, :J4].each do |coords|
-        expect(subject[coords]).to be ship
+        expect(subject[coords].content).to be ship
       end
     end
 
@@ -72,9 +72,10 @@ describe Board do
         expect { subject[coord] }.to raise_error 'Invalid coordinate'
       end
     end
-    it 'returns the entry in the grid' do
+
+    it 'returns the cell in the grid' do
       subject.place_ship :ship, :C9
-      expect(subject[:C9]).to be :ship
+      expect(subject[:C9].content).to be :ship
     end
   end
 

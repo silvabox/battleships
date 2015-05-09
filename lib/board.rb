@@ -52,7 +52,7 @@ class Board
 
   def [] coordinate
     coord_handler.validate coordinate
-    grid[coordinate].content
+    grid[coordinate]
   end
 
   def all_ships_sunk?

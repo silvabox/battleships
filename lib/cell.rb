@@ -13,4 +13,11 @@ class Cell
   def empty?
     !content
   end
+
+  def status
+    if shot?
+      return empty? ? :miss : :hit
+    end
+    :none
+  end
 end

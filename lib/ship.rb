@@ -1,4 +1,12 @@
 class Ship
+  SIZES = {
+    destroyer: 2,
+    cruiser: 3,
+    submarine: 3,
+    battleship: 4,
+    aircraft_carrier: 5
+  }
+
   attr_reader :size
 
   def initialize size
@@ -15,22 +23,22 @@ class Ship
   end
 
   def self.destroyer
-    Ship.new(2)
+    Ship.new(SIZES[:destroyer])
   end
 
   def self.cruiser
-    Ship.new(3)
+    Ship.new(SIZES[:cruiser])
   end
 
   def self.submarine
-    Ship.new(3)
+    Ship.new(SIZES[:submarine])
   end
 
   def self.battleship
-    Ship.new(4)
+    Ship.new(SIZES[:battleship])
   end
 
   def self.aircraft_carrier
-    Ship.new(5)
+    Ship.new(SIZES[:aircraft_carrier])
   end
 end
