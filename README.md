@@ -73,7 +73,7 @@ Players can view their own boards:
   ------------
    ABCDEFGHIJ
 ```
-And their opponents boards:
+And their opponent's boards:
 ```
 > puts game.opponent_board_view game.player_1
    ABCDEFGHIJ
