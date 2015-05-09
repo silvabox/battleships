@@ -128,9 +128,10 @@ describe Board do
     it 'returns false when there are no ships' do
       expect(subject.all_ships_sunk?).to be_falsy
     end
+    
     it 'returns false if ships are not all sunk' do
-    subject.place_ship double(:ship, size: 3, sunk?: true), :A1
-    subject.place_ship double(:ship, size: 3, sunk?: false), :C3, :vertically
+      subject.place_ship double(:ship, size: 3, sunk?: true), :A1
+      subject.place_ship double(:ship, size: 3, sunk?: false), :C3, :vertically
       expect(subject.all_ships_sunk?).to be_falsy
     end
   end
