@@ -35,9 +35,4 @@ describe Game do
     allow(player).to receive(:winner?).and_return true
     expect(subject.winner).to be player
   end
-
-  describe 'print_board' do
-    
-  end
-
 end
