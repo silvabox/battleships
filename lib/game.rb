@@ -49,11 +49,19 @@ TEMPLATE
     players.find(&:winner?)
   end
 
-  def print_board player, board
-    if board == player.board
-      print_own_board board
-    else
-      print_opponent_board board
+  def own_board_view player
+    create_print player.board do |cell|
+      if cell.empty?
+        BOARD_MARKERS[cell.status]
+      else
+        cell.shot? ? BOARD_MARKERS[:hit] : cell.content.type.to_s.upcase[0]
+      end
+    end
+  end
+
+  def opponent_board_view player
+    create_print player.opponent.board do |cell|
+      BOARD_MARKERS[cell.status]
     end
   end
 
@@ -63,21 +71,6 @@ TEMPLATE
     [player_1, player_2]
   end
 
-  def print_own_board board
-    create_print board do |cell|
-      if cell.empty?
-        BOARD_MARKERS[cell.status]
-      else
-        cell.shot? ? BOARD_MARKERS[:hit] : cell.content.type.to_s.upcase[0]
-      end
-    end
-  end
-
-  def print_opponent_board board
-    create_print board do |cell|
-      BOARD_MARKERS[cell.status]
-    end
-  end
 
   def create_print board
     coord_handler = CoordinateHandler.new

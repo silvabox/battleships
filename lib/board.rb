@@ -60,6 +60,10 @@ class Board
     ships.all?(&:sunk?)
   end
 
+  def inspect
+    to_s
+  end
+
   private
 
   attr_reader :grid, :coord_handler

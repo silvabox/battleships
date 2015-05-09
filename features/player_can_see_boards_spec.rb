@@ -16,13 +16,13 @@ feature 'player can see boards' do
   end
 
   scenario 'own board shows hits, misses and ships' do
-    view = game.print_board(player1, player1.board)
+    view = game.own_board_view(player1)
     puts view
     expect(view).to eq OWN_BOARD_VIEW
   end
 
   scenario 'opponent board only shows hits and misses' do
-    view = game.print_board(player2, player1.board)
+    view = game.opponent_board_view(player2)
     puts view
     expect(view).to eq OPPONENT_BOARD_VIEW
   end
