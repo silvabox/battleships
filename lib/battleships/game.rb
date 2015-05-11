@@ -1,4 +1,4 @@
-class Game
+class Battleships::Game
   BOARD_MARKERS = {
     miss: '-',
     hit: '*',

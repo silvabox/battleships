@@ -1,4 +1,4 @@
-class Cell
+class Battleships::Cell
   attr_accessor :content
 
   def receive_shot

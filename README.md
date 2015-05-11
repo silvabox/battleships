@@ -19,8 +19,9 @@ The code is intended to demonstrate a range of techniques:
 
 The game is fully playable in `irb`:
 ```
+gem install battleships
 $ irb
-> require './battleships'
+> require 'battleships'
 ```
 Now create a new game using `Game`, `Player` and `Board` classes:
 ```

@@ -1,4 +1,4 @@
-class Player
+class Battleships::Player
   attr_accessor :board, :opponent
 
   def place_ship ship, coordinates, orientation = :horizontally
