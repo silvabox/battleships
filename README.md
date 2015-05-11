@@ -92,7 +92,7 @@ And their opponent's boards:
   ------------
    ABCDEFGHIJ
 
-> puts game.opponent_board_view game.player_1
+> puts game.opponent_board_view game.player_2
    ABCDEFGHIJ
   ------------
  1|          |1
