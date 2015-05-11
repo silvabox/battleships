@@ -31,7 +31,7 @@ Each player can place ships on their own board:
 ```
 > game.player_1.place_ship Ship.battleship, :B4, :vertically
 
-> game.player_2.place_ship Ship.carrier, :G6
+> game.player_2.place_ship Ship.cruiser, :G6
 ```
 Players can shoot at each other's boards:
 ```
