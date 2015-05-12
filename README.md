@@ -121,7 +121,7 @@ And the game can be tested for a winner:
 ```
 > game.has_winner?
  => true
-> game.winner? game.player_1
+> game.player_1.winner?
  => false
 > game.player_2.winner?
  => true
