@@ -1,5 +1,5 @@
 class Battleships::Player
-  attr_accessor :board, :opponent
+  attr_accessor :board, :opponent, :name
 
   def place_ship ship, coordinates, orientation = :horizontally
     board.place_ship ship, coordinates, orientation

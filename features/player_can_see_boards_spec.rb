@@ -1,30 +1,32 @@
-feature 'player can see boards' do
-  let(:game) { Game.new Player, Board }
-  let(:player1) { game.player_1 }
-  let(:player2) { game.player_2 }
+module Battleships
+  feature 'player can see boards' do
+    let(:game) { Game.new Player, Board }
+    let(:player1) { game.player_1 }
+    let(:player2) { game.player_2 }
 
-  before(:each) do
-    player1.place_ship Ship.aircraft_carrier, :B1
-    player1.place_ship Ship.battleship, :G2, :vertically
-    player1.place_ship Ship.cruiser, :D9
-    player1.place_ship Ship.destroyer, :C10
-    player1.place_ship Ship.submarine, :C6
+    before(:each) do
+      player1.place_ship Ship.aircraft_carrier, :B1
+      player1.place_ship Ship.battleship, :G2, :vertically
+      player1.place_ship Ship.cruiser, :D9
+      player1.place_ship Ship.destroyer, :C10
+      player1.place_ship Ship.submarine, :C6
 
-    [:B1, :C1, :H1, :G2, :I2, :G4, :G5, :A6, :B6, :B8, :F8, :J8, :D9, :E9, :F9].each do |coord|
-      player2.shoot coord
+      [:B1, :C1, :H1, :G2, :I2, :G4, :G5, :A6, :B6, :B8, :F8, :J8, :D9, :E9, :F9].each do |coord|
+        player2.shoot coord
+      end
     end
-  end
 
-  scenario 'own board shows hits, misses and ships' do
-    view = game.own_board_view(player1)
-    puts view
-    expect(view).to eq OWN_BOARD_VIEW
-  end
+    scenario 'own board shows hits, misses and ships' do
+      view = game.own_board_view(player1)
+      puts view
+      expect(view).to eq OWN_BOARD_VIEW
+    end
 
-  scenario 'opponent board only shows hits and misses' do
-    view = game.opponent_board_view(player2)
-    puts view
-    expect(view).to eq OPPONENT_BOARD_VIEW
+    scenario 'opponent board only shows hits and misses' do
+      view = game.opponent_board_view(player2)
+      puts view
+      expect(view).to eq OPPONENT_BOARD_VIEW
+    end
   end
 end
 
