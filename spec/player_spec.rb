@@ -1,4 +1,4 @@
-require 'player'
+require 'battleships/player'
 
 describe Player do
   let(:board) { instance_double Board }

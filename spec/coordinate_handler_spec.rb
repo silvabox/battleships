@@ -1,4 +1,4 @@
-require 'coordinate_handler'
+require 'battleships/coordinate_handler'
 
 describe CoordinateHandler do
 

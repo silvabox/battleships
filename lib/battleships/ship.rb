@@ -1,4 +1,4 @@
-class Battleships::Ship
+class Ship
   SIZES = {
     submarine: 1,
     destroyer: 2,

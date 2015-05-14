@@ -1,6 +1,6 @@
-require 'game'
-require 'board'
-require 'player'
+require 'battleships/game'
+require 'battleships/board'
+require 'battleships/player'
 
 feature 'player can win game' do
   let(:game) { Game.new Player, Board }

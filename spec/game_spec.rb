@@ -1,4 +1,4 @@
-require 'game'
+require 'battleships/game'
 
 describe Game do
   let(:player) { double :player }
