@@ -1,6 +1,6 @@
-require 'player'
-require 'board'
-require 'ship'
+require 'battleships/player'
+require 'battleships/board'
+require 'battleships/ship'
 
 feature 'player adds ships' do
   let(:player) { Player.new }

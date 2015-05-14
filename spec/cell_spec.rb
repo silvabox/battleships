@@ -1,4 +1,4 @@
-require 'cell'
+require 'battleships/cell'
 
 describe Cell do
   it 'can be shot' do

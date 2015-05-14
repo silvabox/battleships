@@ -1,4 +1,4 @@
-require 'board'
+require 'battleships/board'
 
 describe Board do
   let(:invalid_coords) {   [:A11, :A0, :K1, :K10] }

@@ -1,7 +1,7 @@
 require_relative 'cell'
 require_relative 'coordinate_handler'
 
-class Battleships::Board
+class Board
   SIZE = 10
 
   attr_accessor :width

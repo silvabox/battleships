@@ -1,4 +1,4 @@
-class Battleships::CoordinateHandler
+class CoordinateHandler
   include Enumerable
 
   HORIZONTAL_COORDS = ('A'..'J').to_a

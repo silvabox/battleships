@@ -1,4 +1,4 @@
-require 'ship'
+require 'battleships/ship'
 
 describe Ship do
 
