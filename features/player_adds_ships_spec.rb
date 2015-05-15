@@ -31,10 +31,21 @@ module Battleships
       carrier = Ship.aircraft_carrier
 
       player.place_ship destroyer, :A1, :vertically
-      player.place_ship carrier, :H3, :vertically
+      player.place_ship carrier, :H3, 'vertically'
 
       [:A1, :A2].each { |coord| expect(player.board[coord].content).to be destroyer }
       [:H3, :H4, :H5, :H6, :H7].each { |coord| expect(player.board[coord].content).to be carrier }
+    end
+
+    scenario 'player adds ships horizontally' do
+      destroyer = Ship.destroyer
+      carrier = Ship.aircraft_carrier
+
+      player.place_ship destroyer, :A1, :horizontally
+      player.place_ship carrier, :D8, 'horizontally'
+
+      [:A1, :B1].each { |coord| expect(player.board[coord].content).to be destroyer }
+      [:D8, :E8, :F8, :G8, :H8].each { |coord| expect(player.board[coord].content).to be carrier }
     end
   end
 end

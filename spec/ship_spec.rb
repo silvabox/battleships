@@ -14,6 +14,12 @@ module Battleships
       expect(subject).to be_sunk
     end
 
+    it 'can be initialized with a string name' do
+      ship = Ship.new 'cruiser'
+
+      expect(ship.size).to eq Ship::SIZES[:cruiser]
+    end
+
     it 'creates submarines' do
       ship = Ship.submarine
 

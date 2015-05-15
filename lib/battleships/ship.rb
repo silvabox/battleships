@@ -11,8 +11,8 @@ module Battleships
     attr_reader :type, :size
 
     def initialize type
-      @type = type
-      @size = SIZES[type]
+      @type = type.to_sym
+      @size = SIZES[@type]
       @hits = 0
     end
 

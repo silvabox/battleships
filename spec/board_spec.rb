@@ -45,9 +45,33 @@ module Battleships
         expect{subject.place_ship ship, :J2}.to raise_error 'Out of bounds'
       end
 
+      it 'allows ships to be placed horizontally' do
+        ship = double :ship, size: 3
+        subject.place_ship ship, :H2, :horizontally
+        [:H2, :I2, :J2].each do |coords|
+          expect(subject[coords].content).to be ship
+        end
+      end
+
+      it 'allows ships to be placed horizontally with strings' do
+        ship = double :ship, size: 3
+        subject.place_ship ship, 'H2', 'horizontally'
+        [:H2, :I2, :J2].each do |coords|
+          expect(subject[coords].content).to be ship
+        end
+      end
+
       it 'allows ships to be placed vertically' do
         ship = double :ship, size: 3
         subject.place_ship ship, :J2, :vertically
+        [:J2, :J3, :J4].each do |coords|
+          expect(subject[coords].content).to be ship
+        end
+      end
+
+      it 'allows ships to be placed vertically with strings' do
+        ship = double :ship, size: 3
+        subject.place_ship ship, 'J2', 'vertically'
         [:J2, :J3, :J4].each do |coords|
           expect(subject[coords].content).to be ship
         end

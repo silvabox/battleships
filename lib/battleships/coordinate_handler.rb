@@ -37,7 +37,7 @@ module Battleships
       x = match.captures.first
       y = match.captures.last
 
-      if orientation == :horizontally
+      if orientation.to_sym == :horizontally
         horizontal_coords_for x, y, size
       else
         vertical_coords_for x, y, size

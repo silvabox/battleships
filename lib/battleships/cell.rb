@@ -22,3 +22,4 @@ module Battleships
       :none
     end
   end
+end
