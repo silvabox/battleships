@@ -15,7 +15,7 @@ module Battleships
     end
 
     def place_ship ship, coordinate, orientation = :horizontally
-      coords = all_ship_coords ship, coordinate, orientation
+      coords = ship_coords ship, coordinate, orientation
 
       coords.each { |coord| grid[coord].content = ship }
       @ships << ship
@@ -75,15 +75,13 @@ module Battleships
       end
     end
 
-    def all_ship_coords ship, coord, orientation
+    def ship_coords ship, coord, orientation
       coord_handler.validate coord
-
-      all_coords = coord_handler.from coord, ship.size, orientation
-
-      validate_all_ship_coords all_coords, ship.size
+      ship_coords = coord_handler.from coord, ship.size, orientation
+      validate_ship_coords ship_coords, ship.size
     end
 
-    def validate_all_ship_coords coords, size
+    def validate_ship_coords coords, size
       #ship is out of bounds if the ship is larger than the available coords
       fail 'Out of bounds' if size > coords.length
 
