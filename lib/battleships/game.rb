@@ -1,89 +1,91 @@
-class Battleships::Game
-  BOARD_MARKERS = {
-    miss: '-',
-    hit: '*',
-    none: ' '
-  }.freeze
+module Battleships
+  class Game
+    BOARD_MARKERS = {
+      miss: '-',
+      hit: '*',
+      none: ' '
+    }.freeze
 
-  BOARD_TEMPLATE = <<TEMPLATE
-   ABCDEFGHIJ
-  ------------
- 1|<1>|1
- 2|<2>|2
- 3|<3>|3
- 4|<4>|4
- 5|<5>|5
- 6|<6>|6
- 7|<7>|7
- 8|<8>|8
- 9|<9>|9
-10|<10>|10
-  ------------
-   ABCDEFGHIJ
+    BOARD_TEMPLATE = <<TEMPLATE
+     ABCDEFGHIJ
+    ------------
+   1|<1>|1
+   2|<2>|2
+   3|<3>|3
+   4|<4>|4
+   5|<5>|5
+   6|<6>|6
+   7|<7>|7
+   8|<8>|8
+   9|<9>|9
+  10|<10>|10
+    ------------
+     ABCDEFGHIJ
 TEMPLATE
-  
-  BOARD_TEMPLATE.freeze
+    
+    BOARD_TEMPLATE.freeze
 
-  attr_reader :player_1, :player_2
+    attr_reader :player_1, :player_2
 
-  def initialize(playerClass, boardClass)
-    @player_1 = initialize_player playerClass, boardClass
-    @player_2 = initialize_player playerClass, boardClass
+    def initialize(playerClass, boardClass)
+      @player_1 = initialize_player playerClass, boardClass
+      @player_2 = initialize_player playerClass, boardClass
 
 
-    player_1.opponent = player_2
-    player_2.opponent = player_1
-  end
+      player_1.opponent = player_2
+      player_2.opponent = player_1
+    end
 
-  def initialize_player(playerClass, boardClass)
-    player = playerClass.new
-    player.board = boardClass.new
-    player
-  end
+    def initialize_player(playerClass, boardClass)
+      player = playerClass.new
+      player.board = boardClass.new
+      player
+    end
 
-  def has_winner?
-    players.any?(&:winner?)
-  end
+    def has_winner?
+      players.any?(&:winner?)
+    end
 
-  def winner
-    players.find(&:winner?)
-  end
+    def winner
+      players.find(&:winner?)
+    end
 
-  def own_board_view player
-    create_print player.board do |cell|
-      if cell.empty?
-        BOARD_MARKERS[cell.status]
-      else
-        cell.shot? ? BOARD_MARKERS[:hit] : cell.content.type.to_s.upcase[0]
+    def own_board_view player
+      create_print player.board do |cell|
+        if cell.empty?
+          BOARD_MARKERS[cell.status]
+        else
+          cell.shot? ? BOARD_MARKERS[:hit] : cell.content.type.to_s.upcase[0]
+        end
       end
     end
-  end
 
-  def opponent_board_view player
-    create_print player.opponent.board do |cell|
-      BOARD_MARKERS[cell.status]
+    def opponent_board_view player
+      create_print player.opponent.board do |cell|
+        BOARD_MARKERS[cell.status]
+      end
     end
-  end
 
-  private
+    private
 
-  def players
-    [player_1, player_2]
-  end
-
-
-  def create_print board
-    coord_handler = CoordinateHandler.new
-
-    output = BOARD_TEMPLATE
-
-    coord_handler.each_row do |row, number|
-      print_row = row.map do |coord|
-        yield board[coord]
-      end.join('')
-      
-      output = output.sub("<#{number}>", print_row)
+    def players
+      [player_1, player_2]
     end
-    output
+
+
+    def create_print board
+      coord_handler = CoordinateHandler.new
+
+      output = BOARD_TEMPLATE
+
+      coord_handler.each_row do |row, number|
+        print_row = row.map do |coord|
+          yield board[coord]
+        end.join('')
+        
+        output = output.sub("<#{number}>", print_row)
+      end
+      output
+    end
   end
 end
