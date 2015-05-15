@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'battleships'
-  s.version     = '0.1.1'
+  s.version     = '0.1.2'
   s.date        = '2015-05-11'
   s.summary     = 'Battleships'
   s.description = 'A simple version of Battleships to play in irb'
